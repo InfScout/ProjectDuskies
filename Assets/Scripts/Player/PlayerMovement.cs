@@ -59,7 +59,7 @@ namespace Player
             JumpReset();
             IsWallJump();
             Gravity();
-            WallSlide();
+            IsWallSlide();
         
             if (!_isWallJumping && !_dash.isDashing)
             {
@@ -118,7 +118,7 @@ namespace Player
         }
 
     
-        private void WallSlide()
+        private void IsWallSlide()
         {
             if (!_groundCheck.IsGrounded() & _wallCheck.IsWalled() & _horizontalMovement != 0)
             {

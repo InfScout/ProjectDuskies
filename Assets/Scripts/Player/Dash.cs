@@ -1,5 +1,6 @@
 ﻿
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,11 +9,15 @@ namespace Player
     public class Dash : MonoBehaviour
     {
         private PlayerMovement _playerMovement;
+        private GroundCheck _groundCheck;
         
         private bool _canDash = true;
         public bool isDashing = false;
-        private int _dashCount = 3;
+        [SerializeField] private float maxStamina = 31;
+        private float _currentStamina;
         private float _baseGravity;
+        [SerializeField] private float dashRegenSpeed = 2.5f;
+        [SerializeField] private float dashCost = 10;
         [SerializeField]private float dashPower = 24f;
         [SerializeField]private float dashTime = .2f;
         [SerializeField]private float dashCooldown = 1f;
@@ -22,24 +27,34 @@ namespace Player
 
         private void Start()
         {
+            _currentStamina =  maxStamina;
+            _groundCheck = GetComponent<GroundCheck>();
             _playerMovement = GetComponent<PlayerMovement>();
             _trail = GetComponent<TrailRenderer>();
             _rb = GetComponent<Rigidbody2D>();
         }
 
+        private void FixedUpdate()
+        {
+            if (_groundCheck.IsGrounded() && _currentStamina != maxStamina)
+            {
+                RegenStam();
+            }
+        }
+
         public void DashStart(InputAction.CallbackContext context)
         {
-            if (context.performed && _canDash)
+            if (context.performed & _canDash & _currentStamina > dashCost)
             {
                 StartCoroutine(DashCoroutine());
             }
         }
-
-
+        
         private IEnumerator DashCoroutine()
         {
             _canDash = false;
             isDashing = true;
+            _currentStamina -= dashCost;
             
             _trail.emitting = true;
             _baseGravity = _rb.gravityScale;
@@ -57,6 +72,12 @@ namespace Player
             
             yield return new WaitForSeconds(dashCooldown);
             _canDash = true;
+        }
+
+        private void RegenStam()
+        {
+            _currentStamina += dashRegenSpeed * Time.deltaTime;
+            _currentStamina = Mathf.Clamp(_currentStamina, 0f, maxStamina);
         }
     }
 }

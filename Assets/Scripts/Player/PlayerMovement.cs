@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     
     
     private float wallJumpDir ;
-    private float wallJumpTime = .5f; 
+    private float wallJumpTime = .2f; 
     private float wallJumpTimer;
     [SerializeField] private Vector2 wallJumpPower = new Vector2(10f,15f);
     private bool _isWallSliding = false;
@@ -50,14 +50,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (dash.isDashing)
+        if (dash.isDashing || _isWallJumping)
         {
             return;
         }
+        
         JumpReset();
         IsWallJump();
         Gravity();
         WallSlide();
+        
         if (!_isWallJumping && !dash.isDashing)
         {
             rb.linearVelocity = new Vector2(horizontalMovement * speed, rb.linearVelocity.y);
@@ -72,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void JumpReset()
     {
-       if (groundCheck.IsGrounded())
+       if (groundCheck.IsGrounded() || _isWallSliding)
        {
            _currentJumps = maxJumps;
        }
@@ -97,12 +99,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void WallJump(InputAction.CallbackContext context)
     {
-        if (context.performed && _isWallSliding)
+        if (context.performed && wallJumpTimer > 0f)
         {
             _isWallJumping = true;
             rb.linearVelocity = new Vector2(wallJumpDir * wallJumpPower.x, wallJumpPower.y);
             wallJumpTimer = 0;
-
+            
             if (transform.localScale.x != wallJumpDir)
             {
                 isFacingRight = !isFacingRight;
@@ -110,14 +112,14 @@ public class PlayerMovement : MonoBehaviour
                 ls.x *= -1;
                 transform.localScale = ls;
             }
-            Invoke(nameof(CancelWallJump),wallJumpTime +0.1f);
+            Invoke(nameof(CancelWallJump),wallJumpTime);
         }
     }
 
     
     private void WallSlide()
     {
-        if (!groundCheck.IsGrounded() & wallCheck.IsWalled())
+        if (!groundCheck.IsGrounded() & wallCheck.IsWalled() & horizontalMovement != 0)
         {
             _isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, MathF.Max(rb.linearVelocity.y, - _wallSlideSpeed));
@@ -140,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(wallJumpTimer > 0f)
         {
-            wallJumpTime -= Time.deltaTime;
+            wallJumpTimer -= Time.deltaTime;
         }
     }
 

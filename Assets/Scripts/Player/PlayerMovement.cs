@@ -2,23 +2,24 @@ using System;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
     public bool isFacingRight = true;
     
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
 
-    private float horizontalMovement;
-    private GroundCheck groundCheck;
-    private WallCheck wallCheck;
-    private Dash dash;
+    private float _horizontalMovement;
+    private GroundCheck _groundCheck;
+    private WallCheck _wallCheck;
+    private Dash _dash;
     
-    [SerializeField] private float _gravity =2f;
-    [SerializeField] private float _maxFallSpeed = 18f;
-    [SerializeField] private float _fallSpeedMultiplier = 2f;
+    [SerializeField] private float gravity =2f;
+    [SerializeField] private float maxFallSpeed = 18f;
+    [SerializeField] private float fallSpeedMultiplier = 2f;
 
 
     private bool _isWallJumping;
@@ -27,19 +28,19 @@ public class PlayerMovement : MonoBehaviour
     
     
     
-    private float wallJumpDir ;
-    private float wallJumpTime = .2f; 
-    private float wallJumpTimer;
+    private float _wallJumpDir ;
+    private float _wallJumpDuration = .2f; 
+    private float _wallJumpTimer;
     [SerializeField] private Vector2 wallJumpPower = new Vector2(10f,15f);
     private bool _isWallSliding = false;
-    [SerializeField] private float _wallSlideSpeed = 0.2f;
+    [SerializeField] private float wallSlideSpeed = 0.2f;
     
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        wallCheck = GetComponent<WallCheck>();
-        groundCheck = GetComponent<GroundCheck>();
-        dash = GetComponent<Dash>();
+        _rb = GetComponent<Rigidbody2D>();
+        _wallCheck = GetComponent<WallCheck>();
+        _groundCheck = GetComponent<GroundCheck>();
+        _dash = GetComponent<Dash>();
     }
 
     void Awake()
@@ -50,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (dash.isDashing || _isWallJumping)
+        if (_dash.isDashing || _isWallJumping)
         {
             return;
         }
@@ -60,21 +61,21 @@ public class PlayerMovement : MonoBehaviour
         Gravity();
         WallSlide();
         
-        if (!_isWallJumping && !dash.isDashing)
+        if (!_isWallJumping && !_dash.isDashing)
         {
-            rb.linearVelocity = new Vector2(horizontalMovement * speed, rb.linearVelocity.y);
+            _rb.linearVelocity = new Vector2(_horizontalMovement * speed, _rb.linearVelocity.y);
             Flip();
         }
     }
 
     public void MoveMe(InputAction.CallbackContext context)
     {
-        horizontalMovement = context.ReadValue<Vector2>().x;
+        _horizontalMovement = context.ReadValue<Vector2>().x;
     }
 
     private void JumpReset()
     {
-       if (groundCheck.IsGrounded() || _isWallSliding)
+       if (_groundCheck.IsGrounded() || _isWallSliding)
        {
            _currentJumps = maxJumps;
        }
@@ -86,12 +87,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (context.performed)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);   
+                _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);   
                 _currentJumps--;
             }
             else if (context.canceled)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * .5f);
+                _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _rb.linearVelocity.y * .5f);
                 _currentJumps--;
             } 
         }
@@ -99,30 +100,30 @@ public class PlayerMovement : MonoBehaviour
 
     public void WallJump(InputAction.CallbackContext context)
     {
-        if (context.performed && wallJumpTimer > 0f)
+        if (context.performed && _wallJumpTimer > 0f)
         {
             _isWallJumping = true;
-            rb.linearVelocity = new Vector2(wallJumpDir * wallJumpPower.x, wallJumpPower.y);
-            wallJumpTimer = 0;
+            _rb.linearVelocity = new Vector2(_wallJumpDir * wallJumpPower.x, wallJumpPower.y);
+            _wallJumpTimer = 0;
             
-            if (transform.localScale.x != wallJumpDir)
+            if (transform.localScale.x != _wallJumpDir)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 ls = transform.localScale;
                 ls.x *= -1;
                 transform.localScale = ls;
             }
-            Invoke(nameof(CancelWallJump),wallJumpTime);
+            Invoke(nameof(CancelWallJump),_wallJumpDuration);
         }
     }
 
     
     private void WallSlide()
     {
-        if (!groundCheck.IsGrounded() & wallCheck.IsWalled() & horizontalMovement != 0)
+        if (!_groundCheck.IsGrounded() & _wallCheck.IsWalled() & _horizontalMovement != 0)
         {
             _isWallSliding = true;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, MathF.Max(rb.linearVelocity.y, - _wallSlideSpeed));
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, MathF.Max(_rb.linearVelocity.y, - wallSlideSpeed));
         }
         else
         {
@@ -135,14 +136,14 @@ public class PlayerMovement : MonoBehaviour
         if (_isWallSliding)
         {
             _isWallJumping = false;
-            wallJumpDir = -transform.localScale.x;
-            wallJumpTimer = wallJumpTime;
+            _wallJumpDir = -transform.localScale.x;
+            _wallJumpTimer = _wallJumpDuration;
             
             CancelInvoke(nameof(CancelWallJump));
         }
-        else if(wallJumpTimer > 0f)
+        else if(_wallJumpTimer > 0f)
         {
-            wallJumpTimer -= Time.deltaTime;
+            _wallJumpTimer -= Time.deltaTime;
         }
     }
 
@@ -154,20 +155,20 @@ public class PlayerMovement : MonoBehaviour
     
     private void Gravity()
     {
-        if (rb.linearVelocity.y < 0)
+        if (_rb.linearVelocity.y < 0)
         {
-            rb.gravityScale = _gravity * _fallSpeedMultiplier;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x,Mathf.Max(rb.linearVelocity.y, - _maxFallSpeed));
+            _rb.gravityScale = gravity * fallSpeedMultiplier;
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x,Mathf.Max(_rb.linearVelocity.y, - maxFallSpeed));
         }
         else
         {
-            rb.gravityScale = _gravity;
+            _rb.gravityScale = gravity;
         }
     }
 
     private void Flip()
     {
-        if (isFacingRight && horizontalMovement < 0 || !isFacingRight && horizontalMovement > 0)
+        if (isFacingRight && _horizontalMovement < 0 || !isFacingRight && _horizontalMovement > 0)
         {
             isFacingRight = !isFacingRight;
             Vector3 ls = transform.localScale;

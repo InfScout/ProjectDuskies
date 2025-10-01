@@ -12,6 +12,7 @@ namespace Player
         private bool canDash = true;
         public bool isDashing = false;
         private int dashCount = 3;
+        private float _baseGravity;
         [SerializeField]private float dashPower = 24f;
         [SerializeField]private float dashTime = .2f;
         [SerializeField]private float dashCooldown = 1f;
@@ -41,13 +42,16 @@ namespace Player
             isDashing = true;
             
             trail.emitting = true;
-            float dashDirection = _playerMovement.isFacingRight ? -1f : 1f;
+            _baseGravity = rb.gravityScale;
+            rb.gravityScale = 0;
+            float dashDirection = _playerMovement.isFacingRight ? 1f : -1f;
             
             rb.linearVelocity = new Vector2(dashDirection * dashPower, rb.linearVelocity.y);
             
             yield return new WaitForSeconds(dashTime);
             
             rb.linearVelocity = new Vector2(0f , rb.linearVelocity.y);
+            rb.gravityScale = _baseGravity;
             trail.emitting = false;
             isDashing = false;
             

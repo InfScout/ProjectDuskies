@@ -22,6 +22,11 @@ public class PlayerMovement : MonoBehaviour
 
 
     private bool _isWallJumping;
+    [SerializeField] private int maxJumps = 2;
+    private int _currentJumps;
+    
+    
+    
     private float wallJumpDir ;
     private float wallJumpTime = .5f; 
     private float wallJumpTimer;
@@ -35,12 +40,13 @@ public class PlayerMovement : MonoBehaviour
         wallCheck = GetComponent<WallCheck>();
         groundCheck = GetComponent<GroundCheck>();
         dash = GetComponent<Dash>();
-    }	
-
-    void FixedUpdate()
-    {
-        rb.linearVelocity = new Vector2(horizontalMovement * speed, rb.linearVelocity.y);
     }
+
+    void Awake()
+    {
+        _currentJumps = maxJumps;
+    }
+   
 
     void Update()
     {
@@ -48,10 +54,11 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        JumpReset();
         IsWallJump();
         Gravity();
         WallSlide();
-        if (!_isWallJumping)
+        if (!_isWallJumping && !dash.isDashing)
         {
             rb.linearVelocity = new Vector2(horizontalMovement * speed, rb.linearVelocity.y);
             Flip();
@@ -63,12 +70,28 @@ public class PlayerMovement : MonoBehaviour
         horizontalMovement = context.ReadValue<Vector2>().x;
     }
 
+    private void JumpReset()
+    {
+       if (groundCheck.IsGrounded())
+       {
+           _currentJumps = maxJumps;
+       }
+    }
     
     public void Jump (InputAction.CallbackContext context)                                                 //jump
     {
-        if (context.performed && groundCheck.IsGrounded())
+        if (_currentJumps > 0)
         {
+            if (context.performed)
+            {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);   
+                _currentJumps--;
+            }
+            else if (context.canceled)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * .5f);
+                _currentJumps--;
+            } 
         }
     }
 
@@ -94,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void WallSlide()
     {
-        if (!groundCheck.IsGrounded() & wallCheck.IsWalled() & horizontalMovement != 0)
+        if (!groundCheck.IsGrounded() & wallCheck.IsWalled())
         {
             _isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, MathF.Max(rb.linearVelocity.y, - _wallSlideSpeed));

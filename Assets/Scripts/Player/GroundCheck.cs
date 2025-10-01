@@ -6,11 +6,12 @@ namespace Player
 {
     public class GroundCheck : MonoBehaviour
     {
+       
+        
         [SerializeField] private LayerMask _groundLayer;
-        [SerializeField] private float _radius = 2f;
         [SerializeField] private Transform _groundCheckPos;
         [SerializeField] private Vector2 _groundCheckSize =  new Vector2(1f, 1f);
-
+        
         public bool IsGrounded()
         {
             if (Physics2D.OverlapBox(_groundCheckPos.position, _groundCheckSize, 0, _groundLayer))

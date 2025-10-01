@@ -4,8 +4,7 @@ namespace Player
 {
     public class WallCheck : MonoBehaviour
     {
-       [SerializeField] private LayerMask _wallLayer;
-        [SerializeField] private float _radius = 2f;
+        [SerializeField] private LayerMask _wallLayer;
         [SerializeField] private Transform _wallCheckPos;
         [SerializeField] private Vector2 _wallCheckSize =  new Vector2(1f, 1f);
 

@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,27 +9,27 @@ namespace Player
     {
         private PlayerMovement _playerMovement;
         
-        private bool canDash = true;
+        private bool _canDash = true;
         public bool isDashing = false;
-        private int dashCount = 3;
+        private int _dashCount = 3;
         private float _baseGravity;
         [SerializeField]private float dashPower = 24f;
         [SerializeField]private float dashTime = .2f;
         [SerializeField]private float dashCooldown = 1f;
         
-        private TrailRenderer trail;
-        private Rigidbody2D rb;
+        private TrailRenderer _trail;
+        private Rigidbody2D _rb;
 
         private void Start()
         {
             _playerMovement = GetComponent<PlayerMovement>();
-            trail = GetComponent<TrailRenderer>();
-            rb = GetComponent<Rigidbody2D>();
+            _trail = GetComponent<TrailRenderer>();
+            _rb = GetComponent<Rigidbody2D>();
         }
 
         public void DashStart(InputAction.CallbackContext context)
         {
-            if (context.performed && canDash)
+            if (context.performed && _canDash)
             {
                 StartCoroutine(DashCoroutine());
             }
@@ -38,25 +38,25 @@ namespace Player
 
         private IEnumerator DashCoroutine()
         {
-            canDash = false;
+            _canDash = false;
             isDashing = true;
             
-            trail.emitting = true;
-            _baseGravity = rb.gravityScale;
-            rb.gravityScale = 0;
+            _trail.emitting = true;
+            _baseGravity = _rb.gravityScale;
+            _rb.gravityScale = 0;
             float dashDirection = _playerMovement.isFacingRight ? 1f : -1f;
             
-            rb.linearVelocity = new Vector2(dashDirection * dashPower, rb.linearVelocity.y);
+            _rb.linearVelocity = new Vector2(dashDirection * dashPower, _rb.linearVelocity.y);
             
             yield return new WaitForSeconds(dashTime);
             
-            rb.linearVelocity = new Vector2(0f , rb.linearVelocity.y);
-            rb.gravityScale = _baseGravity;
-            trail.emitting = false;
+            _rb.linearVelocity = new Vector2(0f , _rb.linearVelocity.y);
+            _rb.gravityScale = _baseGravity;
+            _trail.emitting = false;
             isDashing = false;
             
             yield return new WaitForSeconds(dashCooldown);
-            canDash = true;
+            _canDash = true;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -42,12 +43,6 @@ namespace Player
             _groundCheck = GetComponent<GroundCheck>();
             _dash = GetComponent<Dash>();
         }
-
-        void Awake()
-        {
-            _currentJumps = maxJumps;
-        }
-   
 
         void Update()
         {
@@ -175,6 +170,12 @@ namespace Player
                 ls.x *= -1;
                 transform.localScale = ls;
             }
+        }
+
+        public void JumpAdd()
+        {
+            _currentJumps ++;
+            _currentJumps = Mathf.Clamp(_currentJumps, 0, maxJumps);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Player
         private bool _canDash = true;
         public bool isDashing = false;
         [SerializeField] private float maxStamina = 31;
-        private float _currentStamina;
+        [SerializeField] private float _currentStamina;
         private float _baseGravity;
         [SerializeField] private float dashRegenSpeed = 2.5f;
         [SerializeField] private float dashCost = 10;

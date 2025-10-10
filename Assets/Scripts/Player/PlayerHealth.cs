@@ -21,9 +21,12 @@ namespace Player
 
         public void TakeDamage(int damage)
         {
+            Debug.Log($"TakeDamage{health}");
                 health -=  damage;
+                health = Mathf.Clamp(health, 0, maxHealth);
                 if (health <= 0)
                 {
+                    Debug.Log("die");
                     //die
                 }
         }

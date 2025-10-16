@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527fdfe155db3c042b734e4112f0cd2e, type: 3}
+  m_Name: Plume
+  m_EditorClassIdentifier: Assembly-CSharp::Plume
+  ShootingStratigyName: Plume
+  shootingObj: {fileID: 4344375319482199262, guid: 4eb5c8df2dc71c241a8943157c13edbb, type: 3}
+  projectile: {fileID: 4344375319482199262, guid: 4eb5c8df2dc71c241a8943157c13edbb, type: 3}
+  projectileHitBox: {fileID: 6688499523565545094, guid: 3677818347dcee942a22ec1d60b1fcbe, type: 3}
+  plumeDuration: 5

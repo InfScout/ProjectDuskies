@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730d5b590ea05bf4fb0ad0659e1cc216, type: 3}
+  m_Name: RedBall
+  m_EditorClassIdentifier: Assembly-CSharp::RedBall
+  ShootingStratigyName: Red40
+  shootingObj: {fileID: 7164705576947199105, guid: 305ebbb05de56524882164627cc31432, type: 3}
+  shootForce: 10

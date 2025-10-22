@@ -10,6 +10,7 @@ namespace Player
     {
         private PlayerMovement _playerMovement;
         private GroundCheck _groundCheck;
+        private Animator _animator;
         
         private bool _canDash = true;
         public bool isDashing = false;
@@ -32,6 +33,7 @@ namespace Player
             _playerMovement = GetComponent<PlayerMovement>();
             _trail = GetComponent<TrailRenderer>();
             _rb = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         private void FixedUpdate()
@@ -52,6 +54,7 @@ namespace Player
         
         private IEnumerator DashCoroutine()
         {
+            _animator.SetTrigger("Dashing");
             _canDash = false;
             isDashing = true;
             _currentStamina -= dashCost;

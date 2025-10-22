@@ -10,6 +10,10 @@ namespace Player
         public bool isFacingRight = true;
     
         private Rigidbody2D _rb;
+        private Animator _animator;
+        
+        [SerializeField] private ParticleSystem _SmokeParticle;
+        
         [SerializeField] private float speed;
         [SerializeField] private float jumpForce;
 
@@ -38,10 +42,12 @@ namespace Player
     
         void Start()
         {
+            _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
             _wallCheck = GetComponent<WallCheck>();
             _groundCheck = GetComponent<GroundCheck>();
             _dash = GetComponent<Dash>();
+            _SmokeParticle = GetComponent<ParticleSystem>();
         }
 
         void Update()
@@ -61,6 +67,9 @@ namespace Player
                 _rb.linearVelocity = new Vector2(_horizontalMovement * speed, _rb.linearVelocity.y);
                 Flip();
             }
+            _animator.SetFloat("yVelocity", _rb.linearVelocity.y);
+            _animator.SetFloat("Magnitude", _rb.linearVelocity.magnitude);
+            _animator.SetBool("isWallSliding" , _isWallSliding);
         }
 
         public void MoveMe(InputAction.CallbackContext context)
@@ -84,6 +93,7 @@ namespace Player
                 {
                     _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);   
                     _currentJumps--;
+                    _animator.SetTrigger("Jump");
                 }
                 else if (context.canceled)
                 {
@@ -92,6 +102,7 @@ namespace Player
                 } 
             }
         }
+        
 
         public void WallJump(InputAction.CallbackContext context)
         {
@@ -100,6 +111,7 @@ namespace Player
                 _isWallJumping = true;
                 _rb.linearVelocity = new Vector2(_wallJumpDir * wallJumpPower.x, wallJumpPower.y);
                 _wallJumpTimer = 0;
+                _animator.SetTrigger("Jump");
             
                 if (transform.localScale.x != _wallJumpDir)
                 {

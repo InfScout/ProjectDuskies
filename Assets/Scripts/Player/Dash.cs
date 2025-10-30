@@ -1,6 +1,8 @@
 ﻿
+using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,6 +45,7 @@ namespace Player
                 RegenStam();
             }
         }
+        
 
         public void DashStart(InputAction.CallbackContext context)
         {
@@ -59,7 +62,6 @@ namespace Player
             isDashing = true;
             _currentStamina -= dashCost;
             
-            _trail.emitting = true;
             _baseGravity = _rb.gravityScale;
             _rb.gravityScale = 0;
             float dashDirection = _playerMovement.isFacingRight ? 1f : -1f;
@@ -70,7 +72,6 @@ namespace Player
             
             _rb.linearVelocity = new Vector2(0f , _rb.linearVelocity.y);
             _rb.gravityScale = _baseGravity;
-            _trail.emitting = false;
             isDashing = false;
             
             yield return new WaitForSeconds(dashCooldown);
@@ -81,6 +82,16 @@ namespace Player
         {
             _currentStamina += dashRegenSpeed * Time.deltaTime;
             _currentStamina = Mathf.Clamp(_currentStamina, 0f, maxStamina);
+        }
+
+        public void AddDash()
+        {
+            _currentStamina += dashCost;
+        }
+
+        public bool GetIsDashing()
+        {
+            return isDashing;
         }
     }
 }

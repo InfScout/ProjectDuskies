@@ -21,9 +21,10 @@ namespace Items
         }
         public void Collect()
         {
-            Debug.Log("Collecting " + this.gameObject.name);
             _playerHealth.HealthUp(healAmmount);
+            
             Destroy(gameObject);
+            Debug.Log("destroyed");
         }
     }
 }

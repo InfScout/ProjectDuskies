@@ -1,10 +1,8 @@
 ﻿
-using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
-using Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -15,9 +13,9 @@ namespace Player
         private Animator _animator;
         
         private bool _canDash = true;
-        public bool isDashing = false;
+        public bool isDashing;
         [SerializeField] private float maxStamina = 31;
-        [SerializeField] private float _currentStamina;
+        [SerializeField] private float currentStamina;
         private float _baseGravity;
         [SerializeField] private float dashRegenSpeed = 2.5f;
         [SerializeField] private float dashCost = 10;
@@ -25,22 +23,23 @@ namespace Player
         [SerializeField]private float dashTime = .2f;
         [SerializeField]private float dashCooldown = 1f;
         
-        private TrailRenderer _trail;
+        [SerializeField] private ParticleSystem dustParticle;
+       
         private Rigidbody2D _rb;
 
         private void Start()
         {
-            _currentStamina =  maxStamina;
+            currentStamina =  maxStamina;
             _groundCheck = GetComponent<GroundCheck>();
             _playerMovement = GetComponent<PlayerMovement>();
-            _trail = GetComponent<TrailRenderer>();
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
+            dustParticle = GetComponentInChildren<ParticleSystem>();
         }
 
         private void FixedUpdate()
         {
-            if (_groundCheck.IsGrounded() && _currentStamina != maxStamina)
+            if (_groundCheck.IsGrounded() && currentStamina != maxStamina)
             {
                 RegenStam();
             }
@@ -49,7 +48,7 @@ namespace Player
 
         public void DashStart(InputAction.CallbackContext context)
         {
-            if (context.performed & _canDash & _currentStamina > dashCost)
+            if (context.performed & _canDash & currentStamina > dashCost)
             {
                 StartCoroutine(DashCoroutine());
             }
@@ -60,7 +59,7 @@ namespace Player
             _animator.SetTrigger("Dashing");
             _canDash = false;
             isDashing = true;
-            _currentStamina -= dashCost;
+            currentStamina -= dashCost;
             
             _baseGravity = _rb.gravityScale;
             _rb.gravityScale = 0;
@@ -80,18 +79,24 @@ namespace Player
 
         private void RegenStam()
         {
-            _currentStamina += dashRegenSpeed * Time.deltaTime;
-            _currentStamina = Mathf.Clamp(_currentStamina, 0f, maxStamina);
+            currentStamina += dashRegenSpeed * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
         }
 
         public void AddDash()
         {
-            _currentStamina += dashCost;
+            currentStamina += dashCost;
         }
 
         public bool GetIsDashing()
         {
             return isDashing;
+        }
+        
+        private void PlayDustParticle()
+        {
+            if (_groundCheck.IsGrounded())
+                dustParticle.Play();
         }
     }
 }

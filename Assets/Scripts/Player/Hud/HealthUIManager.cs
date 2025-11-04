@@ -23,13 +23,17 @@ namespace Player.Hud
             if (_healthIndex < 0) return;
             _healthPoint[_healthIndex - 1].GetComponent<Image>().enabled = false;
             _healthIndex--;
+            Debug.Log(_healthIndex);
         }
 
         public void RestoreHealth()
         {
             if (_healthIndex > _maxHealthIndex) return;
-            _healthPoint[_healthIndex + 1].GetComponent<Image>().enabled = true;
+            _healthPoint[_healthIndex].GetComponent<Image>().enabled = true;
             _healthIndex++;
+            Debug.Log(_healthIndex);
         }
+        
+        
     }
 }

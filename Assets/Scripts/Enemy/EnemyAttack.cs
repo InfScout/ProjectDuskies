@@ -7,10 +7,10 @@ namespace Enemy
     
     public class EnemyAttack : MonoBehaviour
     {
-        [SerializeField]private PlayerHealth _playerHealth;
-        [SerializeField]private int damage = 1;
-        [SerializeField] private Dash _dash;
+        private PlayerHealth _playerHealth;
+        private Dash _dash;
 
+        [SerializeField]private int damage = 1;
         private void Awake()
         {
             if (_playerHealth == null)

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿
 using UnityEngine;
 
 namespace Player
@@ -24,7 +23,6 @@ namespace Player
             if (Physics2D.OverlapBox(_groundCheckPos.position, _groundCheckSize, 0, _groundLayer))
             {
                 return true;
-                _animator.SetBool("isNotGrounded", true);
             }
 
             return false;

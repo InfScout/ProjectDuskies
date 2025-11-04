@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+        private static readonly int YVelocity = Animator.StringToHash("yVelocity");
+        private static readonly int Magnitude = Animator.StringToHash("Magnitude");
+        private static readonly int IsWallSliding = Animator.StringToHash("isWallSliding");
         public bool isFacingRight = true;
     
         private Rigidbody2D _rb;
@@ -47,7 +49,7 @@ namespace Player
             _wallCheck = GetComponent<WallCheck>();
             _groundCheck = GetComponent<GroundCheck>();
             _dash = GetComponent<Dash>();
-            _SmokeParticle = GetComponent<ParticleSystem>();
+            _SmokeParticle = GetComponentInChildren<ParticleSystem>();
         }
 
         void Update()
@@ -67,9 +69,9 @@ namespace Player
                 _rb.linearVelocity = new Vector2(_horizontalMovement * speed, _rb.linearVelocity.y);
                 Flip();
             }
-            _animator.SetFloat("yVelocity", _rb.linearVelocity.y);
-            _animator.SetFloat("Magnitude", _rb.linearVelocity.magnitude);
-            _animator.SetBool("isWallSliding" , _isWallSliding);
+            _animator.SetFloat(YVelocity, _rb.linearVelocity.y);
+            _animator.SetFloat(Magnitude, _rb.linearVelocity.magnitude);
+            _animator.SetBool(IsWallSliding , _isWallSliding);
         }
 
         public void MoveMe(InputAction.CallbackContext context)
@@ -84,6 +86,8 @@ namespace Player
                 _currentJumps = maxJumps;
             }
         }
+
+       
     
         public void Jump (InputAction.CallbackContext context)                                                 //jump
         {

@@ -27,7 +27,7 @@ public class Turret : MonoBehaviour
  public void SetShootingStrat(ShootingStrat newStrat)
  {
   _currentShootingStrat =  newStrat;
-  Debug.Log("Strat Changed");
+ 
  }
  
 }

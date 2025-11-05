@@ -13,7 +13,7 @@ public class Shield : MonoBehaviour
     private Dash _dash;
     
     public bool isHittable = false;
-    [SerializeField] private float iframeTime = .75f;
+    [SerializeField] private float iframeTime = 1.2f;
     
 
     private void Awake()

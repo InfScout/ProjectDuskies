@@ -21,7 +21,7 @@ namespace Player.Hud
         public void UpdateHealth()
         {
             if (_healthIndex < 0) return;
-            _healthPoint[_healthIndex - 1].GetComponent<Image>().enabled = false;
+            _healthPoint[_healthIndex - 1].enabled = false;
             _healthIndex--;
             Debug.Log(_healthIndex);
         }
@@ -29,7 +29,7 @@ namespace Player.Hud
         public void RestoreHealth()
         {
             if (_healthIndex > _maxHealthIndex) return;
-            _healthPoint[_healthIndex].GetComponent<Image>().enabled = true;
+            _healthPoint[_healthIndex].enabled = true;
             _healthIndex++;
             Debug.Log(_healthIndex);
         }

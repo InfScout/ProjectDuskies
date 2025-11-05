@@ -324,7 +324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.14247917, y: 0.12314815}
   m_AnchorMax: {x: 0.21827087, y: 0.1508148}
-  m_AnchoredPosition: {x: 0.39978027, y: -2}
+  m_AnchoredPosition: {x: 0.39941406, y: -2}
   m_SizeDelta: {x: -2.25, y: -0.833313}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &261079327
@@ -348,10 +348,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -6009659526907054807, guid: 5d0f309f45c9abe4896b5b9732098990, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -6870,7 +6870,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.010148544, y: 0.02785186}
   m_AnchorMax: {x: 0.22247945, y: 0.13900001}
-  m_AnchoredPosition: {x: -1.3000488, y: -1.25}
+  m_AnchoredPosition: {x: -1.2998047, y: -1.25}
   m_SizeDelta: {x: -0.5, y: -2.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &880006359
@@ -7417,7 +7417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealth
   maxHealth: 3
   health: 0
-  healthUIManager: {fileID: 0}
+  healthUIManager: {fileID: 1344885581}
   iframeTime: 0.75
   isHittable: 1
 --- !u!114 &918955278
@@ -7491,10 +7491,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: -5343348877294980561, guid: ef9a6d6b36940db4db32a8a287262ce8, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -8067,7 +8067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1344885581
@@ -8083,9 +8083,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.Hud.HealthUIManager
   _healthPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2019491757}
+  - {fileID: 1718017563}
+  - {fileID: 979108928}
 --- !u!1 &1382496564
 GameObject:
   m_ObjectHideFlags: 0
@@ -8195,7 +8195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.024, y: 0.118518524}
   m_AnchorMax: {x: 0.22087502, y: 0.15637036}
-  m_AnchoredPosition: {x: 6.265503, y: -2.5}
+  m_AnchoredPosition: {x: 6.2651367, y: -2.5}
   m_SizeDelta: {x: -17.385742, y: -9.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1396290535
@@ -8372,10 +8372,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 7751876830532889701, guid: 71556e11088d931438136f5ac6375349, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0

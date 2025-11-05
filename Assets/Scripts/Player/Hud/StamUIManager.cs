@@ -19,20 +19,14 @@ namespace Player.Hud
             }
         }
 
-        public void UpdateStam()
+        public void UpdateStamina()
         {
-            if (_stamIndex < 0) return;
-            _stamPoint[_stamIndex - 1].GetComponent<Image>().enabled = false;
-            _stamIndex--;
-            Debug.Log(_stamIndex);
+            
         }
 
-        public void RestoreHealth()
+        public void RestoreStamina()
         {
-            if (_stamIndex > _stamIndex) return;
-            _stamPoint[_stamIndex].GetComponent<Image>().enabled = true;
-            _stamIndex++;
-            Debug.Log(_stamIndex);
+            
         }
 
     }

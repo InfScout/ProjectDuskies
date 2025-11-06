@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: f4f60ee99c250404eb49976c7c83e110
+guid: 1275bc01661ddfa489d2a7a3a5ef3bff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6208176927266180224
-    second: Play_0
+      213: -3907308437625539351
+    second: FOreBG_0
   - first:
-      213: 434674283716880328
-    second: Play_1
-  - first:
-      213: 6233243470654288490
-    second: Play_2
-  - first:
-      213: -902394926370334936
-    second: Play_3
+      213: -4898357155219860711
+    second: FOreBG_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -135,23 +129,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Play_0
+      name: FOreBG_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 181
-        height: 67
+        width: 173
+        height: 180
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 08c0a74e500e72650800000000000000
-      internalID: 6208176927266180224
+      spriteID: 9e471738da376c9c0800000000000000
+      internalID: -3907308437625539351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FOreBG_1
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 0
+        width: 125
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9139024be1a850cb0800000000000000
+      internalID: -4898357155219860711
       vertices: []
       indices: 
       edges: []
@@ -160,7 +176,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 93336eddfe01f874087fd3385324c21f
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -168,11 +184,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":181.0,"y":67.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Play_0: 6208176927266180224
+      FOreBG_0: -3907308437625539351
+      FOreBG_1: -4898357155219860711
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

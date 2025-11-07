@@ -28,7 +28,7 @@ namespace Player.Hud
 
         public void RestoreHealth()
         {
-            if (_healthIndex > _maxHealthIndex) return;
+            if (_healthIndex >= _maxHealthIndex) return;
             _healthPoint[_healthIndex].enabled = true;
             _healthIndex++;
             Debug.Log(_healthIndex);

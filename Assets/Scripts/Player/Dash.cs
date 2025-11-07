@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Player.Hud;
 using UnityEngine.Serialization;
 
 namespace Player
@@ -23,7 +24,7 @@ namespace Player
         [SerializeField]private float dashTime = .2f;
         [SerializeField]private float dashCooldown = 1f;
         
-        [SerializeField] private ParticleSystem dustParticle;
+        [SerializeField] private StamUIManager stamUIManager;
        
         private Rigidbody2D _rb;
 
@@ -34,15 +35,15 @@ namespace Player
             _playerMovement = GetComponent<PlayerMovement>();
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
-            dustParticle = GetComponentInChildren<ParticleSystem>();
         }
 
         private void FixedUpdate()
         {
-            if (_groundCheck.IsGrounded() && currentStamina != maxStamina)
+            if (_groundCheck.IsGrounded() && !Mathf.Approximately(currentStamina, maxStamina))
             {
                 RegenStam();
             }
+            stamUIManager.UpdateStamina( currentStamina ,  maxStamina);
         }
         
 
@@ -93,10 +94,6 @@ namespace Player
             return isDashing;
         }
         
-        private void PlayDustParticle()
-        {
-            if (_groundCheck.IsGrounded())
-                dustParticle.Play();
-        }
+        
     }
 }

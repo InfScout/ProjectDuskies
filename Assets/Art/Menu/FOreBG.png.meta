@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: -3907308437625539351
     second: FOreBG_0
-  - first:
-      213: -4898357155219860711
-    second: FOreBG_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -134,7 +131,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 173
+        width: 151
         height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -146,28 +143,6 @@ TextureImporter:
       bones: []
       spriteID: 9e471738da376c9c0800000000000000
       internalID: -3907308437625539351
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FOreBG_1
-      rect:
-        serializedVersion: 2
-        x: 205
-        y: 0
-        width: 125
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9139024be1a850cb0800000000000000
-      internalID: -4898357155219860711
       vertices: []
       indices: 
       edges: []
@@ -187,7 +162,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       FOreBG_0: -3907308437625539351
-      FOreBG_1: -4898357155219860711
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

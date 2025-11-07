@@ -5,29 +5,16 @@ using UnityEngine.UI;
 
 namespace Player.Hud
 {
-    public class StamUIManager
+    public class StamUIManager : MonoBehaviour
     {
-        private int _stamIndex = 3;
-        private int _maxstamIndex = 3;
-        [SerializeField] private Image[] _stamPoint;
-
-        private void Start()
+        [SerializeField] private Image _stamPoint;
+        
+        public void UpdateStamina(float currentStamina , float maxStamina)
         {
-            for (int i = 0; i < _stamPoint.Length; i++)
-            {
-                _stamPoint[i].GetComponent<Image>().enabled = true;
-            }
+            float percentage = currentStamina / maxStamina;
+            if (!Mathf.Approximately(percentage, 1))
+                _stamPoint.fillAmount = percentage;
         }
-
-        public void UpdateStamina()
-        {
-            
-        }
-
-        public void RestoreStamina()
-        {
-            
-        }
-
+        
     }
 }

@@ -26,6 +26,7 @@ namespace Enemy
             if (currentHealth <= 0)
             { 
                 Destroy(gameObject);
+                
             }
         }
         

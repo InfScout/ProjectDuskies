@@ -12,9 +12,7 @@ namespace Player.Hud
         public void UpdateStamina(float currentStamina , float maxStamina)
         {
             float percentage = currentStamina / maxStamina;
-            if (!Mathf.Approximately(percentage, 1))
-                _stamPoint.fillAmount = percentage;
+            _stamPoint.fillAmount = percentage;
         }
-        
     }
 }

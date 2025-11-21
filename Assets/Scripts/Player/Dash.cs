@@ -87,6 +87,7 @@ namespace Player
         public void AddDash()
         {
             currentStamina += dashCost;
+            stamUIManager.UpdateStamina( currentStamina ,  maxStamina);
         }
 
         public bool GetIsDashing()

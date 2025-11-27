@@ -37,7 +37,7 @@ namespace Player
             _animator = GetComponent<Animator>();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (_groundCheck.IsGrounded() && !Mathf.Approximately(currentStamina, maxStamina))
             {

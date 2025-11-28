@@ -5,6 +5,7 @@ public class PauseMan : MonoBehaviour
 {
     [SerializeField] GameObject _pauseMenu;
     private bool _isPaused = false;
+    [SerializeField]private Animator animator;
 
     private void Awake()
     {
@@ -27,12 +28,14 @@ public class PauseMan : MonoBehaviour
     private void PauseGame()
     {
         _pauseMenu.SetActive(true);
+        animator.SetTrigger("pause");
         _isPaused = true;
         Time.timeScale = 0;
     }
 
     private void ResumeGame()
     {
+        animator.SetTrigger("unPause");
         _pauseMenu.SetActive(false);
         _isPaused = false;
         Time.timeScale = 1;

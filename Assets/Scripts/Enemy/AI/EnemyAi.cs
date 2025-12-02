@@ -1,6 +1,6 @@
+using System.Collections;
 using Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EnemyAi : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class EnemyAi : MonoBehaviour
     
     [SerializeField]private float chaseSpeed = 2f;
     [SerializeField]private float jumpForce = 2f;
+    [SerializeField] private float jumpCoolDown = 2f;
     [SerializeField] private LayerMask _groundLayer;
     private float direction;
     
@@ -15,6 +16,7 @@ public class EnemyAi : MonoBehaviour
     GroundCheck _groundCheck;
     
     private bool isGrounded;
+    private bool canJump;
     private bool shouldJump;
     private bool isPlayerAbove;
     private bool isFacingRight;
@@ -23,13 +25,14 @@ public class EnemyAi : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         _groundCheck = GetComponent<GroundCheck>();
+        canJump = true;
     }
     
     private void Update()
     {
         direction = Mathf.Sign(player.position.x - transform.position.x );
         
-        isPlayerAbove = Physics2D.Raycast(transform.position, Vector2.up, 10f , 1 << player.gameObject.layer);
+        isPlayerAbove = Physics2D.Raycast(transform.position, Vector2.up, 5f , 1 << player.gameObject.layer);
 
         Chase();
         Flip();
@@ -39,7 +42,10 @@ public class EnemyAi : MonoBehaviour
      private void FixedUpdate()
     {
         if (_groundCheck.IsGrounded())
+        {
+            StartCoroutine(_JumpCoolDown());
             isGrounded = true;
+        }
         else
             isGrounded = false;        
         
@@ -57,18 +63,20 @@ public class EnemyAi : MonoBehaviour
                 
         RaycastHit2D gapAhead = Physics2D.Raycast(transform.position + new Vector3(direction, 0 , 0), Vector2.down, 2f, _groundLayer);
                 
-        RaycastHit2D platformAbove = Physics2D.Raycast(transform.position, Vector2.up, 10f, _groundLayer);
+        RaycastHit2D platformAbove = Physics2D.Raycast(transform.position, Vector2.up, 5f, _groundLayer);
 
-            if (groundInFront && gapAhead.collider)
-            {
+      
+        
+        if (groundInFront && gapAhead.collider && canJump)
+        {
                 
-                shouldJump = true;
-            }
+            shouldJump = true;
+        }
          
-            else if (isPlayerAbove && platformAbove.collider)
-            {
-                shouldJump = true; 
-            }
+        else if (isPlayerAbove && platformAbove.collider && canJump)
+        {
+            shouldJump = true; 
+        }
             
     }
     
@@ -78,6 +86,8 @@ public class EnemyAi : MonoBehaviour
         {
             shouldJump = false;
             
+            canJump = false;
+            
             Vector2 directionToPlayer = (player.position - transform.position).normalized;
             
             Vector2 jumpVector = new Vector2(directionToPlayer.x, 1f).normalized * jumpForce;
@@ -85,6 +95,13 @@ public class EnemyAi : MonoBehaviour
             rb.AddForce(new Vector2(jumpVector.x, jumpForce), ForceMode2D.Impulse);
         }
         
+    }
+
+    private IEnumerator _JumpCoolDown ()
+    {
+        yield return new WaitForSeconds(jumpCoolDown);
+        
+        canJump = true;
     }
     
     private void Flip()
@@ -98,5 +115,4 @@ public class EnemyAi : MonoBehaviour
             transform.localScale = ls;
         }
     }
-    
 }

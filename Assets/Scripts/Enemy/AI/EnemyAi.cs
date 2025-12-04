@@ -69,7 +69,6 @@ public class EnemyAi : MonoBehaviour
         
         if (groundInFront && gapAhead.collider && canJump)
         {
-                
             shouldJump = true;
         }
          

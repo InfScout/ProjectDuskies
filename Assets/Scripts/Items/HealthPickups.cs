@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Player;
+using UnityEngine.Events;
 
 namespace Items
 {
@@ -7,22 +9,25 @@ namespace Items
     {
         [SerializeField]private PlayerHealth _playerHealth;
         [SerializeField]private int healAmmount = 1;
+        public UnityEvent OnPickUp;
 
-        private void Awake()
+        private void Start()
         {
-            if (_playerHealth == null)
-            {
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                if (player != null)
-                {
-                    _playerHealth = player.GetComponent<PlayerHealth>();
-                }
-            }
+            OnPickUp.AddListener(PickUpHealth);
+        }
+
+        public void PickUpHealth()
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().HealthUp(healAmmount);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            _playerHealth = collision.GetComponent<PlayerHealth>();
         }
         public void Collect()
         {
-            _playerHealth.HealthUp(healAmmount);
-            
+            OnPickUp.Invoke();
             Destroy(gameObject);
             Debug.Log("destroyed");
         }

@@ -20,7 +20,7 @@ namespace Player.Hud
 
         public void UpdateHealth()
         {
-            if (_healthIndex < 0) return;
+            if (_healthIndex <= 0) return;
             _healthPoint[_healthIndex - 1].enabled = false;
             _healthIndex--;
             Debug.Log(_healthIndex);

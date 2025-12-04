@@ -6,7 +6,6 @@ public class SceneLoader : MonoBehaviour
     public static SceneLoader Instance { get; private set; }
     private void Awake()
     {
-        // Singleton pattern setup
         if (Instance == null)
         {
             Instance = this;
@@ -18,9 +17,16 @@ public class SceneLoader : MonoBehaviour
         }
     }
     
-    public void SceneSwitch(string sceneName)
+    public void SceneSwitch(int sceneName)
     {
+        FadeTransition(sceneName);
+    }
+
+    async void FadeTransition(int sceneName)
+    {
+        await Screen.instance.FadeIn();
         SceneManager.LoadScene(sceneName);
+        await Screen.instance.FadeOut();
     }
     
 }

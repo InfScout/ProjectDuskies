@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using Player.Hud;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Player
@@ -13,8 +14,11 @@ namespace Player
         [SerializeField]private HealthUIManager healthUIManager;
         [SerializeField] private float iframeTime = .75f;
         public bool isHittable = true;
+        
+        public UnityEvent onDeath;
         private void Start()
         {
+            onDeath.AddListener(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Death);
             health = maxHealth;
         }
 
@@ -23,6 +27,7 @@ namespace Player
             health += healAmount;
             health = Mathf.Clamp(health, 0, maxHealth);
             healthUIManager.RestoreHealth();
+            
         }
 
         public void TakeDamage(int damage)
@@ -37,8 +42,7 @@ namespace Player
                 
                 if (health <= 0)
                 {
-                    
-                    //die
+                    onDeath.Invoke();
                 }
         }
 

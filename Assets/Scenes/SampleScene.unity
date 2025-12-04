@@ -674,7 +674,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 10
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -898,7 +898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAi
   player: {fileID: 918955263}
   chaseSpeed: 2
-  jumpForce: 1000
+  jumpForce: 70
   jumpCoolDown: 2
   _groundLayer:
     serializedVersion: 2
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   - {fileID: 122455720}
   - {fileID: 240439512}
   - {fileID: 602860001}
-  selectedColor: {r: 0.19496846, g: 0.16615236, b: 0.16615236, a: 1}
+  selectedColor: {r: 0.4811321, g: 0.38808295, b: 0.38808295, a: 1}
 --- !u!1 &447102192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,6 +1329,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483980237}
   m_CullTransparentMesh: 1
+--- !u!1 &506252799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 736136420107109534, guid: 7f133de4bd581514a9d575c3ce57b0a0, type: 3}
+  m_PrefabInstance: {fileID: 4302063195753683566}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &546967421 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5051273214385474412, guid: f33f430fe5c0b3943965b98ee205d6a5, type: 3}
@@ -2097,6 +2102,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762418008}
   m_CullTransparentMesh: 1
+--- !u!1 &775635543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 775635544}
+  - component: {fileID: 775635546}
+  - component: {fileID: 775635545}
+  m_Layer: 5
+  m_Name: DeathSceenPannel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &775635544
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775635543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1421876912}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0.30004883}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &775635545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775635543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -8162064057925243293, guid: 24c4473577bd8a042ba70e09ba17ce68, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &775635546
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775635543}
+  m_CullTransparentMesh: 1
 --- !u!1 &797949687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,7 +2764,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7117398948101233312, guid: 7f133de4bd581514a9d575c3ce57b0a0, type: 3}
   m_PrefabInstance: {fileID: 4302063195753683566}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 506252799}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a0418e8aa3c4e34bbc0624e995dfdca, type: 3}
@@ -3048,7 +3128,7 @@ Transform:
   m_GameObject: {fileID: 1007577965}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.7876, y: -0.5022, z: 0}
+  m_LocalPosition: {x: 23.7876, y: 2.58, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3173,7 +3253,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -3186,7 +3266,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1007577972
 MonoBehaviour:
@@ -3235,7 +3315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAi
   player: {fileID: 918955263}
   chaseSpeed: 2
-  jumpForce: 15
+  jumpForce: 70
   jumpCoolDown: 2
   _groundLayer:
     serializedVersion: 2
@@ -3796,14 +3876,13 @@ GameObject:
   - component: {fileID: 1382226406}
   - component: {fileID: 1382226408}
   - component: {fileID: 1382226407}
-  - component: {fileID: 1382226409}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1382226406
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3866,19 +3945,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382226405}
   m_CullTransparentMesh: 1
---- !u!114 &1382226409
-MonoBehaviour:
+--- !u!1 &1421876911
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382226405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faa713e27c074b244869473a95f39f6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  animator: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421876912}
+  m_Layer: 5
+  m_Name: You Died
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1421876912
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421876911}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 775635544}
+  m_Father: {fileID: 1633565676}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1434113574
 GameObject:
   m_ObjectHideFlags: 0
@@ -4725,7 +4827,7 @@ Transform:
   m_GameObject: {fileID: 1540790652}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.02, y: 1.42, z: 0}
+  m_LocalPosition: {x: 14.02, y: 4.14, z: 0}
   m_LocalScale: {x: 10, y: 0.15000075, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4837,6 +4939,7 @@ GameObject:
   - component: {fileID: 1633565675}
   - component: {fileID: 1633565674}
   - component: {fileID: 1633565673}
+  - component: {fileID: 1633565677}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4921,6 +5024,7 @@ RectTransform:
   m_Children:
   - {fileID: 1344885580}
   - {fileID: 1382226406}
+  - {fileID: 1421876912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4928,6 +5032,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1633565677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633565672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eff3aa217215e7458335a052102cadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Screen
+  canvasGroup: {fileID: 0}
+  fadeDuration: 1
 --- !u!1 &1669176200
 GameObject:
   m_ObjectHideFlags: 0
@@ -5638,9 +5756,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1892547269}
   - component: {fileID: 1892547268}
+  - component: {fileID: 1892547270}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5783,6 +5902,19 @@ Transform:
   - {fileID: 546967423}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1892547270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892547267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a282ce4ee503f149b9df29dfad8ba3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  player: {fileID: 506252799}
 --- !u!1 &1907506085
 GameObject:
   m_ObjectHideFlags: 0

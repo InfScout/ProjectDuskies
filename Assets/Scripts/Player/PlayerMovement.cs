@@ -49,11 +49,11 @@ namespace Player
             _wallCheck = GetComponent<WallCheck>();
             _groundCheck = GetComponent<GroundCheck>();
             _dash = GetComponent<Dash>();
-            _SmokeParticle = GetComponentInChildren<ParticleSystem>();
         }
 
         void Update()
         {
+            
             if (_dash.isDashing || _isWallJumping)
             {
                 return;
@@ -77,6 +77,14 @@ namespace Player
         public void MoveMe(InputAction.CallbackContext context)
         {
             _horizontalMovement = context.ReadValue<Vector2>().x;
+            
+            _SmokeParticle.Play();
+
+            if (_horizontalMovement == 0)
+            {
+                _SmokeParticle.Stop();
+            }
+           
         }
 
         private void JumpReset()
@@ -86,8 +94,7 @@ namespace Player
                 _currentJumps = maxJumps;
             }
         }
-
-       
+        
     
         public void Jump (InputAction.CallbackContext context)                                                 //jump
         {

@@ -12,6 +12,7 @@ namespace Player
         private PlayerMovement _playerMovement;
         private GroundCheck _groundCheck;
         private Animator _animator;
+        private TrailRenderer _trailRenderer;
         
         private bool _canDash = true;
         public bool isDashing;
@@ -35,6 +36,8 @@ namespace Player
             _playerMovement = GetComponent<PlayerMovement>();
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
+            _trailRenderer = GetComponent<TrailRenderer>();
+            _trailRenderer.enabled = false;
         }
 
         private void Update()
@@ -61,6 +64,7 @@ namespace Player
             _canDash = false;
             isDashing = true;
             currentStamina -= dashCost;
+            _trailRenderer.enabled = true;
             
             _baseGravity = _rb.gravityScale;
             _rb.gravityScale = 0;
@@ -75,6 +79,7 @@ namespace Player
             isDashing = false;
             
             yield return new WaitForSeconds(dashCooldown);
+            _trailRenderer.enabled = false;
             _canDash = true;
         }
 

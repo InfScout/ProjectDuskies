@@ -13,12 +13,14 @@ namespace Player
         [SerializeField]private int health;
         [SerializeField]private HealthUIManager healthUIManager;
         [SerializeField] private float iframeTime = .75f;
+        private Animator animator;
         public bool isHittable = true;
         
         public UnityEvent onDeath;
         private void Start()
         {
             onDeath.AddListener(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().Death);
+            animator = GetComponent<Animator>();
             health = maxHealth;
         }
 
@@ -36,6 +38,8 @@ namespace Player
             
                 health -=  damage;
                 health = Mathf.Clamp(health, 0, maxHealth);
+                
+                animator.SetTrigger("TakeDamage");
                 
                 healthUIManager.UpdateHealth();
                 StartCoroutine(IFrame());

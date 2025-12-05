@@ -19,14 +19,14 @@ public class SceneLoader : MonoBehaviour
     
     public void SceneSwitch(int sceneName)
     {
-        FadeTransition(sceneName);
+        SceneManager.LoadScene(sceneName);
     }
 
-    async void FadeTransition(int sceneName)
-    {
-        await Screen.instance.FadeIn();
-        SceneManager.LoadScene(sceneName);
-        await Screen.instance.FadeOut();
-    }
-    
+    // async void FadeTransition(int sceneName)
+    // {
+    //     await Screen.instance.FadeIn();
+    //     SceneManager.LoadScene(sceneName);
+    //     await Screen.instance.FadeOut();
+    // }
+    //
 }

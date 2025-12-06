@@ -80,7 +80,7 @@ namespace Player
             
             _SmokeParticle.Play();
 
-            if (_horizontalMovement == 0)
+            if (_horizontalMovement == 0 || !_groundCheck.IsGrounded())
             {
                 _SmokeParticle.Stop();
             }
@@ -199,6 +199,11 @@ namespace Player
         {
             _currentJumps ++;
             _currentJumps = Mathf.Clamp(_currentJumps, 0, maxJumps);
+        }
+
+        public void FootStep()
+        {
+            SoundManager.PlaySound("Foot");
         }
     }
 }

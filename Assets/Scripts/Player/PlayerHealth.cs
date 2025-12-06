@@ -38,7 +38,7 @@ namespace Player
             
                 health -=  damage;
                 health = Mathf.Clamp(health, 0, maxHealth);
-                
+                SoundManager.PlaySound("Hit");
                 animator.SetTrigger("TakeDamage");
                 
                 healthUIManager.UpdateHealth();

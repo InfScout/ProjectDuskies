@@ -25,6 +25,7 @@ namespace Player
                 if (enemy != null )
                 {
                     enemy.TakeDamage(damage);
+                    SoundManager.PlaySound("Hit");
                     _dash.AddDash();
                 }
             }

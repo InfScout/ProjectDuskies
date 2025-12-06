@@ -61,11 +61,11 @@ namespace Player
         private IEnumerator DashCoroutine()
         {
             _animator.SetTrigger("Dashing");
+            SoundManager.PlaySound("Dash");
             _canDash = false;
             isDashing = true;
             currentStamina -= dashCost;
             _trailRenderer.enabled = true;
-            
             _baseGravity = _rb.gravityScale;
             _rb.gravityScale = 0;
             float dashDirection = _playerMovement.isFacingRight ? 1f : -1f;

@@ -55,6 +55,11 @@ public class MusicScript : MonoBehaviour
       }
    }
 
+   public static void PauseSong()
+   {
+      instance.audioSource.Pause();
+   }
+
    public static void PausedBGM()
    {
       instance.audioSource.pitch = .75f;

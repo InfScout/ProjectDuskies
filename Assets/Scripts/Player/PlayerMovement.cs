@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +23,7 @@ namespace Player
 
         private float _horizontalMovement;
         private GroundCheck _groundCheck;
+        private bool isOnPlatform;
         private WallCheck _wallCheck;
         private Dash _dash;
     
@@ -28,6 +31,7 @@ namespace Player
         [SerializeField] private float maxFallSpeed = 18f;
         [SerializeField] private float fallSpeedMultiplier = 2f;
 
+        private BoxCollider2D playerCollider;
 
         private bool _isWallJumping;
         [SerializeField] private int maxJumps = 2;
@@ -44,6 +48,7 @@ namespace Player
     
         void Start()
         {
+            playerCollider = GetComponent<BoxCollider2D>();
             _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
             _wallCheck = GetComponent<WallCheck>();
@@ -113,6 +118,33 @@ namespace Player
                 } 
             }
         }
+
+        public void Drop(InputAction.CallbackContext context)
+        {
+            if (context.performed && _groundCheck.IsGrounded() && isOnPlatform)
+            {
+                StartCoroutine(DisablePlayerCollider(.2f));
+            }
+        }
+
+        private IEnumerator DisablePlayerCollider(float disableTime)
+        {
+            playerCollider.enabled = false;
+            yield return new WaitForSeconds(disableTime);
+            playerCollider.enabled = true;
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Platform"))
+                isOnPlatform = true;
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            isOnPlatform = false;
+        }
+
         
 
         public void WallJump(InputAction.CallbackContext context)

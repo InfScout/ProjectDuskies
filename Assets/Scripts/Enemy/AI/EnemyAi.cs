@@ -66,8 +66,7 @@ public class EnemyAi : MonoBehaviour
         RaycastHit2D platformAbove = Physics2D.Raycast(transform.position, Vector2.up, 5f, _groundLayer);
 
       
-        
-        if (groundInFront && gapAhead.collider && canJump)
+        if (!groundInFront && !gapAhead.collider && canJump)
         {
             shouldJump = true;
         }

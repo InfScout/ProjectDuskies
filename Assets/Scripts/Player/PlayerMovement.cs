@@ -31,7 +31,7 @@ namespace Player
         [SerializeField] private float maxFallSpeed = 18f;
         [SerializeField] private float fallSpeedMultiplier = 2f;
 
-        private BoxCollider2D playerCollider;
+        private CapsuleCollider2D playerCollider;
 
         private bool _isWallJumping;
         [SerializeField] private int maxJumps = 2;
@@ -48,7 +48,7 @@ namespace Player
     
         void Start()
         {
-            playerCollider = GetComponent<BoxCollider2D>();
+            playerCollider = GetComponent<CapsuleCollider2D>();
             _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
             _wallCheck = GetComponent<WallCheck>();

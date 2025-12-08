@@ -6,7 +6,7 @@ namespace Player.Hud
    public class TimeManager : MonoBehaviour
    {
       [SerializeField] TextMeshProUGUI timeText;
-      float time;
+      public float time;
 
       void Update()
       {

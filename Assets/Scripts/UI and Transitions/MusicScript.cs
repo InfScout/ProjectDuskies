@@ -62,7 +62,7 @@ public class MusicScript : MonoBehaviour
 
    public static void PausedBGM()
    {
-      instance.audioSource.pitch = .75f;
+      instance.audioSource.pitch = .85f;
    }
 
    public static void UnpausedBGM()

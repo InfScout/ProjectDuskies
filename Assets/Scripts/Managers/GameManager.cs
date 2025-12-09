@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Player.Hud;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,6 +18,10 @@ public class GameManager : MonoBehaviour
   [SerializeField] private GameObject A;
   [SerializeField] private GameObject B;
   [SerializeField] private GameObject C;
+  [SerializeField] private int maxScore = 1000;
+  private int _timeScore;
+  
+  [SerializeField] private TimeManager timeManager;
   
   private string sceneName;
   [SerializeField] private float rankDisplayWait;
@@ -24,6 +29,7 @@ public class GameManager : MonoBehaviour
   private int currentScore = 0;
   private void Start()
   {
+    timeManager = GetComponentInChildren<TimeManager>();
     DeathScreen.SetActive(false);
     WinScreen.SetActive(false);
   }
@@ -34,14 +40,19 @@ public class GameManager : MonoBehaviour
     DeathScreen.SetActive(true);
   }
 
-  public void ReLoadScene()
+  public void Retry()
   {
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+  }
+
+  public void ReLoadScene()
+  {
+    Retry();
     Time.timeScale = 1;
     DeathScreen.SetActive(false);
   }
 
-  public void NextLevel()
+  public void ShowRankDisplay()
   {
     StartCoroutine(DisplayFinalScore());
   }
@@ -49,14 +60,25 @@ public class GameManager : MonoBehaviour
   
   private IEnumerator DisplayFinalScore()
   {
+    MusicScript.PauseSong();
+    timeManager.Stop();
+    
+    //calculate score
+    
+    _timeScore = (int)timeManager.time;
+    int scoreToDivide = _timeScore * 10;
+    maxScore -= scoreToDivide;
+    currentScore += maxScore;
     WinScreen.SetActive(true);
-    for (int i = 0; i < currentScore; i++)
+    int iStart = currentScore / 2;
+    Debug.Log(maxScore);
+    Debug.Log(currentScore);
+    for (int i = iStart; i < currentScore; i += 10)
     {
       scoreText.text = i.ToString();
+      yield return new WaitForSeconds(.001f);
     }
-
-    yield return new WaitForSeconds(rankDisplayWait);
-
+    
     if (currentScore > 1000)
     {
       S.SetActive(true);
@@ -78,6 +100,7 @@ public class GameManager : MonoBehaviour
   
   public UnityAction AddScore(int score)
   {
+    Debug.Log(score);
     currentScore += score;
 
     return null;

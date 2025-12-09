@@ -10,12 +10,12 @@ public class FinishLevel : MonoBehaviour , IItem
 
    private void Start()
    {
-      onFinish.AddListener(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().NextLevel);
+      onFinish.AddListener(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().ShowRankDisplay);
    }
    
    public void Collect()
    {
-       
+       Debug.Log("finish level");
         onFinish.Invoke();
         Destroy(gameObject);
    }

@@ -27,6 +27,7 @@ public class PauseMan : MonoBehaviour
 
     private void PauseGame()
     {
+        MusicScript.PausedBGM();
         _pauseMenu.SetActive(true);
         _isPaused = true;
         Time.timeScale = 0;
@@ -34,6 +35,7 @@ public class PauseMan : MonoBehaviour
 
     private void ResumeGame()
     {
+        MusicScript.UnpausedBGM();
         _pauseMenu.SetActive(false);
         _isPaused = false;
         Time.timeScale = 1;

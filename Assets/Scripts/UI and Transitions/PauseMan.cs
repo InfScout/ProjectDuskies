@@ -5,7 +5,6 @@ public class PauseMan : MonoBehaviour
 {
     [SerializeField] GameObject _pauseMenu;
     private bool _isPaused = false;
-    [SerializeField]private Animator animator;
 
     private void Awake()
     {
@@ -24,6 +23,8 @@ public class PauseMan : MonoBehaviour
             PauseGame();
         }
     }
+    
+    
 
     private void PauseGame()
     {
@@ -41,6 +42,12 @@ public class PauseMan : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void PauseButton()
+    {
+        PauseGame();
+    }
+    
+    
     public void ResumeButton()
     {
         ResumeGame();

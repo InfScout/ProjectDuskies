@@ -71,31 +71,18 @@ public class GameManager : MonoBehaviour
     currentScore += maxScore;
     WinScreen.SetActive(true);
     int iStart = currentScore / 2;
-    Debug.Log(maxScore);
-    Debug.Log(currentScore);
+    
     for (int i = iStart; i < currentScore; i += 10)
     {
       scoreText.text = i.ToString();
       yield return new WaitForSeconds(.001f);
     }
     
-    if (currentScore > 1000)
-    {
-      S.SetActive(true);
-    }
-    else if (currentScore > 900)
-    {
-      A.SetActive(true);
-    }
-    else if (currentScore > 700)
-    {
-      B.SetActive(true);
-    }
-    else
-    {
-      C.SetActive(true);
-    }
-    
+    if (currentScore >= 1000) S.SetActive(true);
+    else if (currentScore >= 900) A.SetActive(true);
+    else if (currentScore >= 700) B.SetActive(true);
+    else if (currentScore < 700) C.SetActive(true);
+      
   }
   
   public UnityAction AddScore(int score)

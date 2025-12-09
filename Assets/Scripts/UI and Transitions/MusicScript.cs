@@ -14,7 +14,6 @@ public class MusicScript : MonoBehaviour
       {
          instance = this;
          audioSource = GetComponent<AudioSource>();
-         DontDestroyOnLoad(this);
       }
       else
       {

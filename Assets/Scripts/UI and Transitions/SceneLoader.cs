@@ -9,7 +9,6 @@ public class SceneLoader : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -20,6 +19,11 @@ public class SceneLoader : MonoBehaviour
     public void SceneSwitch(int sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     // async void FadeTransition(int sceneName)

@@ -17,7 +17,6 @@ public class SoundManager : MonoBehaviour
             instance = this;
             audioSource = GetComponent<AudioSource>();
             sfxLibrary = GetComponent<SFXLibrary>();
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -48,4 +47,5 @@ public class SoundManager : MonoBehaviour
     {
         SetVolume(volumeSlider.value);
     }
+    
 }

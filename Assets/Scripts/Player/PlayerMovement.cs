@@ -36,8 +36,9 @@ namespace Player
         private bool _isWallJumping;
         [SerializeField] private int maxJumps = 2;
         private int _currentJumps;
-    
-    
+
+        [SerializeField] private float mudJumpForce = .5f;
+        private bool canMud = true;
     
         private float _wallJumpDir ;
         private float _wallJumpDuration = .2f; 
@@ -123,7 +124,7 @@ namespace Player
         {
             if (context.performed && _groundCheck.IsGrounded() && isOnPlatform)
             {
-                StartCoroutine(DisablePlayerCollider(.2f));
+                StartCoroutine(DisablePlayerCollider(.3f));
             }
         }
 
@@ -236,6 +237,23 @@ namespace Player
         public void FootStep()
         {
             SoundManager.PlaySound("Foot");
+        }
+
+        public void Mudded()
+        {
+            if (canMud)
+                StartCoroutine(MuddedTime());
+        }
+
+        private IEnumerator MuddedTime()
+        {
+            canMud = false;
+            Debug.Log("Mudded");
+            float baseJump = jumpForce;
+            jumpForce = mudJumpForce;
+            yield return new WaitForSeconds(2.5f);
+            jumpForce = baseJump;
+            canMud = true;
         }
     }
 }

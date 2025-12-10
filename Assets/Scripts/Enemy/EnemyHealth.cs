@@ -30,7 +30,6 @@ namespace Enemy
             StartCoroutine(IFrame());
             if (currentHealth <= 0)
             { 
-                
                 Destroy(gameObject);
             }
         }

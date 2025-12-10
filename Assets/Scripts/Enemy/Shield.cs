@@ -20,23 +20,15 @@ public class Shield : MonoBehaviour
     {
         currentHealth = maxHealth;
         _enemy = GetComponentInParent<EnemyHealth>();
-        if (_dash == null)
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null )
-            {
-                _dash = player.GetComponent<Dash>();
-            }
-        }
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isHittable) return;
-        
-        if (collision.CompareTag("Player") && _dash.GetIsDashing())
+
+        _dash = collision.GetComponent<Dash>();
+        if (_dash && _dash.GetIsDashing())
         {
-            Debug.Log("Statement was true");
             _enemy.isHittable = false;
             ShieldTakeDamage();
         }

@@ -19,13 +19,19 @@ public class EnemyAi : MonoBehaviour
     private bool canJump;
     private bool shouldJump;
     private bool isPlayerAbove;
-    private bool isFacingRight;
+    
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         _groundCheck = GetComponent<GroundCheck>();
         canJump = true;
+        AssignPlayer();
+    }
+
+    public void AssignPlayer()
+    {
+        player = PlayerGetter.GetPlayerPosition();
     }
     
     private void Update()
@@ -35,8 +41,6 @@ public class EnemyAi : MonoBehaviour
         isPlayerAbove = Physics2D.Raycast(transform.position, Vector2.up, 5f , 1 << player.gameObject.layer);
 
         Chase();
-        Flip();
-        
     }
 
      private void FixedUpdate()
@@ -102,15 +106,4 @@ public class EnemyAi : MonoBehaviour
         canJump = true;
     }
     
-    private void Flip()
-    {
-        if (isFacingRight && direction > 0 ||  isFacingRight && direction < 0)
-        {
-            Debug.Log("Flip");
-            isFacingRight = !isFacingRight;
-            Vector3 ls = transform.localScale;
-            ls.x *= -1;
-            transform.localScale = ls;
-        }
-    }
 }

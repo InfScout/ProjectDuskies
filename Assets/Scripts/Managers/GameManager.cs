@@ -11,6 +11,7 @@ using UnityEngine.Serialization;
 public class GameManager : MonoBehaviour
 {
   [SerializeField] private GameObject player;
+  
   [SerializeField] private GameObject DeathScreen;
   [SerializeField] private GameObject WinScreen;
   [SerializeField] private TextMeshProUGUI scoreText;
@@ -92,5 +93,7 @@ public class GameManager : MonoBehaviour
 
     return null;
   }
-
+  
+  
+  
 }

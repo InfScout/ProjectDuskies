@@ -29,7 +29,6 @@ namespace Items
         {
             OnPickUp.Invoke();
             Destroy(gameObject);
-            Debug.Log("destroyed");
         }
     }
 }

@@ -27,6 +27,7 @@ public class MusicScript : MonoBehaviour
       {
          PlayBGM(false, BGMclip);
       }
+      SetVolume(.25f);
       musicSlider.onValueChanged.AddListener(delegate { SetVolume(musicSlider.value); });
    }
    

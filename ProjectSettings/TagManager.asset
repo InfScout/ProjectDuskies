@@ -43,5 +43,32 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: 1
+    uniqueID: 1519838933
+    locked: 0
+  - name: 2
+    uniqueID: 657514429
+    locked: 0
+  - name: 3
+    uniqueID: 2670735913
+    locked: 0
+  - name: 4
+    uniqueID: 2624219849
+    locked: 0
+  - name: 5
+    uniqueID: 717650143
+    locked: 0
+  - name: playerEffects
+    uniqueID: 1952316035
+    locked: 0
+  - name: Player
+    uniqueID: 1049792077
+    locked: 0
+  - name: ForeGround
+    uniqueID: 806379755
+    locked: 0
+  - name: GroundnWall
+    uniqueID: 4227531381
+    locked: 0
   m_RenderingLayers:
   - Default

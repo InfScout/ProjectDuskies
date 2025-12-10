@@ -24,7 +24,6 @@ public class ambush : MonoBehaviour, IItem
     }
     public void SpawnKikiAmbush()
     {
-        
         float kikiBaseHeight = self.transform.position.y;
         float kikiHeight = kikiSpawnPos.transform.position.y;
         for (int i = 0; i < spawnAmount; i++)

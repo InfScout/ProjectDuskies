@@ -1,6 +1,5 @@
 using UnityEngine;
 using Player;
-using Unity.VisualScripting;
 
 public class Mud : MonoBehaviour
 {
@@ -9,7 +8,6 @@ public class Mud : MonoBehaviour
   private void OnTriggerEnter2D(Collider2D other)
   {
     playerMovement = other.gameObject.GetComponent<PlayerMovement>();
-    
     if (playerMovement)
     {
         playerMovement.Mudded();
